@@ -12,7 +12,7 @@ The user can search various products via searchbar, sort products according to a
 - Authentication and Authorization
 - Admin Portal
 - Cart and Checkout
-- HTML, CSS, Javascript, Ajax, C#, ASP.NET Core,MVC
+- HTML, CSS, Javascript, Ajax, C#, ASP.NET Core, MVC
 
 
 ### Frontend Attribution
