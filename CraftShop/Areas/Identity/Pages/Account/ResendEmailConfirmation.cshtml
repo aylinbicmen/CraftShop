@@ -1,0 +1,43 @@
+﻿@page
+@model ResendEmailConfirmationModel
+@{
+    ViewData["Title"] = "Resend email confirmation";
+
+    Layout = "_IdentityLayout";
+}
+
+<h2 class="auth-heading text-center mb-5" style="color:#15406a; font-family:cursive;">Create a New Account</h2>
+<div class="auth-form-container text-start mx-auto">
+    <form class="auth-form auth-signup-form" method="post">
+        <div asp-validation-summary="All" class="text-danger" role="alert"></div>
+        <div class="email mb-3">
+            <input asp-for="Input.Email" class="form-control signup-email" aria-required="true" placeholder="name@example.com" />
+            <label asp-for="Input.Email" class="sr-only"></label>
+            <span asp-validation-for="Input.Email" class="text-danger"></span>
+        </div>
+        <button type="submit" class="btn app-btn-primary w-100 theme-btn mx-auto" style="background-color:#0d6efd;">Resend</button>
+    </form><!--//auth-form-->
+
+    <div class="auth-option text-center pt-5"><a asp-action="Index" asp-controller="Home" style="color:#0d6efd;"><i class="fa-solid fa-house"></i> Return Home</a></div>
+</div><!--//auth-form-container-->
+
+@*<h1>@ViewData["Title"]</h1>
+<h2>Enter your email.</h2>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form method="post">
+            <div asp-validation-summary="All" class="text-danger" role="alert"></div>
+            <div class="form-floating mb-3">
+                <input asp-for="Input.Email" class="form-control" aria-required="true" placeholder="name@example.com" />
+                <label asp-for="Input.Email" class="form-label"></label>
+                <span asp-validation-for="Input.Email" class="text-danger"></span>
+            </div>
+            <button type="submit" class="w-100 btn btn-lg btn-primary">Resend</button>
+        </form>
+    </div>
+</div>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}*@

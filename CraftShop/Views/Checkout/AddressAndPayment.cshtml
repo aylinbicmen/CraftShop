@@ -1,0 +1,66 @@
+﻿@using CraftShop.Models.db;
+@model CraftShop.Models.db.Order
+
+@{
+    List<Address> addresses = ViewBag.Address;
+}
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.5/jquery.validate.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validation-unobtrusive/4.0.0/jquery.validate.unobtrusive.js"></script>
+
+<section class="trending-product section" style="margin-top: 12px;">
+    <div class="container">
+        <div class="row">
+            <div class="col-12">
+                <div class="section-title">
+                    <h2>Address And Payment</h2>
+                </div>
+            </div>
+        </div>
+        <div>
+            <form asp-controller="Checkout" asp-action="AddressAndPayment" method="post" class="row">
+                <div class="col-6">
+                    <p class="fw-light text-center fs-5 mb-4">Shipping Information</p>
+                    <div class="mb-3">
+                        <label for="Name" class="form-label">First Name</label>
+                        <input type="text" class="form-control mb-4" id="FirstName" name="FirstName" />
+                    </div>
+                    <div class="mb-3">
+                        <label for="Name" class="form-label">Last Name</label>
+                        <input type="text" class="form-control mb-4" id="LastName" name="LastName" />
+                    </div>
+                    <div class="mb-3">
+                        <label for="Name" class="form-label">Phone</label>
+                        <input type="text" class="form-control mb-4" id="Phone" name="Phone" />
+                    </div>
+                    <div class="mb-3">
+                        <label for="Name" class="form-label">Email</label>
+                        <input type="text" class="form-control mb-4" id="Email" name="Email" />
+                    </div>
+                    <div class="mb-3">
+                        <label for="AddressID" class="form-label">Address</label>
+                        @Html.DropDownList("AddressID",new SelectList(addresses,"AddressID","Name"),new { @class = "form-control mb-4"})
+                    </div>
+                </div>
+                <div class="col-6">
+                    <p class="fw-light text-center fs-5 mb-4">Payment</p>
+                    <div class="mb-3">
+                        <label for="PromoCode" class="form-label">Promo Code</label>
+                        <input type="text" class="form-control mb-4" id="PromoCode" name="PromoCode" />
+                    </div>
+                </div>
+                <div class="row justify-content-center">
+                    <button type="submit" class="btn btn-primary col-2 m-2" id="submitOrder">Submit Order</button>
+                    <a type="button" class="btn btn-primary col-2 m-2" asp-controller="ShoppingCart" asp-action="Index">Go Back</a>
+                </div>
+            </form>
+            
+        </div>
+    </div>
+</section>
+
+<script>
+    $(function () {
+        $('#AddressID').append('<option value="0" selected>Please Select</option>');
+    });
+</script>

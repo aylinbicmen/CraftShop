@@ -1,0 +1,306 @@
+﻿@using CraftShop.Models.db;
+@{
+    Layout = "_Layout";
+
+    List<Product> productsTop = ViewBag.TopProducts;
+    List<Product> productsLatest = ViewBag.LatestProducts;
+
+}
+
+<!-- Start Hero Area -->
+<section class="hero-area">
+    <div class="container">
+        @if (productsLatest.Count > 0)
+        {
+            <div class="row">
+                <div class="col-lg-8 col-12 custom-padding-right">
+                    <div class="slider-head">
+                        <!-- Start Hero Slider -->
+                        <div class="hero-slider">
+                            <!-- Start Single Slider -->
+                            <div class="single-slider"
+                                 style="background-image: url(craftshopimg/banner-bg.jpg); background-size: 800px 500px">
+                                <div class="content">
+                                    <h2>
+                                        <span>Trending Now...</span>
+                                        @productsLatest[0].Name
+                                    </h2>
+                                    <p>
+                                        @productsLatest[0].Description
+                                    </p>
+                                    <h3><span>Now Only</span>@productsLatest[0].Price TL</h3>
+                                    <div class="button">
+                                        <a href="@Url.Action("SingleProduct","Home",new {id=@productsLatest[0].ProductID})" class="btn"><i class="lni lni-cart"></i>Check Now</a>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- End Single Slider -->
+                        </div>
+                        <!-- End Hero Slider -->
+                    </div>
+                </div>
+                <div class="col-lg-4 col-12">
+                    <div class="row">
+                        <div class="col-lg-12 col-md-6 col-12 md-custom-padding">
+                            <!-- Start Small Banner -->
+                            <div class="hero-small-banner"
+                                 style="background-image: url(craftshopimg/banner-bg.jpg); background-size: 370px 250px">
+                                <div class="content">
+                                    <h2>
+                                        <span>Only on CraftShop</span>
+                                        @productsLatest[1].Name
+                                    </h2>
+                                    <h3>@productsLatest[1].Price TL</h3>
+                                </div>
+                            </div>
+                            <!-- End Small Banner -->
+                        </div>
+                        <div class="col-lg-12 col-md-6 col-12">
+                            <!-- Start Small Banner -->
+                            <div class="hero-small-banner style2">
+                                <div class="content">
+                                    <h2>All Products!</h2>
+                                    <p>See What We Have For You.</p>
+                                    <div class="button">
+                                        @Html.ActionLink("Shop Now","Products","Home",new{showType="all"},new{@class="btn"})
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- Start Small Banner -->
+                        </div>
+                    </div>
+                </div>
+            </div>
+        }
+        else
+        {
+            <div class="row">
+                <div class="col-lg-8 col-12 custom-padding-right">
+                    <div class="slider-head">
+                        <!-- Start Hero Slider -->
+                        <div class="hero-slider">
+                            <!-- Start Single Slider -->
+                            <div class="single-slider"
+                                 style="background-image: url(craftshopimg/banner-bg.jpg); background-size: 800px 500px">
+                                <div class="content">
+                                    <h2>
+                                        <span>Trending Now...</span>
+                                        No item
+                                    </h2>
+                                    <p>
+                                        No item
+                                    </p>
+                                    <h3><span>Now Only</span>No item</h3>
+                                    <div class="button">
+                                        <a class="btn">Check Now</a>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- End Single Slider -->
+                        </div>
+                        <!-- End Hero Slider -->
+                    </div>
+                </div>
+                <div class="col-lg-4 col-12">
+                    @if (productsLatest.Count > 0)
+                    {
+                        <div class="row">
+                            <div class="col-lg-12 col-md-6 col-12 md-custom-padding">
+                                <!-- Start Small Banner -->
+                                <div class="hero-small-banner"
+                                     style="background-image: url(craftshopimg/banner-bg.jpg); background-size: 370px 250px">
+                                    <div class="content">
+                                        <h2>
+                                            <span>Only on CraftShop</span>
+                                            @productsLatest[1].Name
+                                        </h2>
+                                        <h3>@productsLatest[1].Price TL</h3>
+                                    </div>
+                                </div>
+                                <!-- End Small Banner -->
+                            </div>
+                            <div class="col-lg-12 col-md-6 col-12">
+                                <!-- Start Small Banner -->
+                                <div class="hero-small-banner style2">
+                                    <div class="content">
+                                        <h2>All Products!</h2>
+                                        <p>See What We Have For You.</p>
+                                        <div class="button">
+                                            @Html.ActionLink("Shop Now","Products","Home",new{showType="all"},new{@class="btn"})
+                                        </div>
+                                    </div>
+                                </div>
+                                <!-- Start Small Banner -->
+                            </div>
+                        </div>
+                    }
+                    else
+                    {
+                        <div class="row">
+                            <div class="col-lg-12 col-md-6 col-12 md-custom-padding">
+                                <!-- Start Small Banner -->
+                                <div class="hero-small-banner"
+                                     style="background-image: url(craftshopimg/banner-bg.jpg); background-size: 370px 250px">
+                                    <div class="content">
+                                        <h2>
+                                            <span>Only on CraftShop</span>
+                                            No item
+                                        </h2>
+                                        <h3>No item</h3>
+                                    </div>
+                                </div>
+                                <!-- End Small Banner -->
+                            </div>
+                            <div class="col-lg-12 col-md-6 col-12">
+                                <!-- Start Small Banner -->
+                                <div class="hero-small-banner style2">
+                                    <div class="content">
+                                        <h2>All Products!</h2>
+                                        <p>See What We Have For You.</p>
+                                        <div class="button">
+                                            <a class="btn">Shop Now</a>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!-- Start Small Banner -->
+                            </div>
+                        </div>
+                    }
+                </div>
+            </div>
+        }
+    </div>
+</section>
+<!-- End Hero Area -->
+<!-- Start Trending Product Area -->
+<section class="trending-product section" style="margin-top: 12px;">
+    <div class="container">
+        <div class="row">
+            <div class="col-12">
+                <div class="section-title">
+                    <h2>Best Sellers</h2>
+                    <p>The Most Popular Products Based On Sales.</p>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            @if (productsLatest.Count > 0)
+            {
+                @foreach (Product prd in productsTop)
+                {
+                    <div class="col-lg-3 col-md-6 col-12">
+                        <!-- Start Single Product -->
+                        <div class="single-product">
+                            <div class="product-image">
+                                <img src="@prd.Photo" alt="#" width="337" height="335">
+                                <div class="button">
+                                    <a href="@Url.Action("SingleProduct","Home",new {id=prd.ProductID})" class="btn"><i class="lni lni-cart"></i>See Details</a>
+                                </div>
+                            </div>
+                            <div class="product-info">
+                                <span class="category">@prd.SubCategory.Category.Name</span>
+                                <h4 class="title">
+                                    <a href="product-grids.html">@prd.Name</a>
+                                </h4>
+                                <div class="price">
+                                    <span>@prd.Price TL</span>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- End Single Product -->
+                    </div>
+                }
+            }
+        </div>
+    </div>
+</section>
+<!-- End Trending Product Area -->
+<!-- Start Shipping Info -->
+<section class="shipping-info">
+    <div class="container">
+        <ul>
+            <!-- Free Shipping -->
+            <li>
+                <div class="media-icon">
+                    <i class="lni lni-delivery"></i>
+                </div>
+                <div class="media-body">
+                    <h5>Free Shipping</h5>
+                    <span>On order over 50 TL</span>
+                </div>
+            </li>
+            <!-- Money Return -->
+            <li>
+                <div class="media-icon">
+                    <i class="lni lni-support"></i>
+                </div>
+                <div class="media-body">
+                    <h5>24/7 Support.</h5>
+                    <span>Live Chat Or Call.</span>
+                </div>
+            </li>
+            <!-- Support 24/7 -->
+            <li>
+                <div class="media-icon">
+                    <i class="lni lni-credit-cards"></i>
+                </div>
+                <div class="media-body">
+                    <h5>Online Payment.</h5>
+                    <span>Secure Payment Services.</span>
+                </div>
+            </li>
+            <!-- Safe Payment -->
+            <li>
+                <div class="media-icon">
+                    <i class="lni lni-reload"></i>
+                </div>
+                <div class="media-body">
+                    <h5>Easy Return.</h5>
+                    <span>Hassle Free Shopping.</span>
+                </div>
+            </li>
+        </ul>
+    </div>
+</section>
+<!-- End Shipping Info -->
+
+<script type="text/javascript">
+    //========= Hero Slider
+    tns({
+        container: '.hero-slider',
+        slideBy: 'page',
+        autoplay: true,
+        autoplayButtonOutput: false,
+        mouseDrag: true,
+        gutter: 0,
+        items: 1,
+        nav: false,
+        controls: true,
+        controlsText: ['<i class="lni lni-chevron-left"></i>', '<i class="lni lni-chevron-right"></i>'],
+    });
+
+    //======== Brand Slider
+    tns({
+        container: '.brands-logo-carousel',
+        autoplay: true,
+        autoplayButtonOutput: false,
+        mouseDrag: true,
+        gutter: 15,
+        nav: false,
+        controls: false,
+        responsive: {
+            0: {
+                items: 1,
+            },
+            540: {
+                items: 3,
+            },
+            768: {
+                items: 5,
+            },
+            992: {
+                items: 6,
+            }
+        }
+    });
+</script>

@@ -1,0 +1,47 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>CraftShop</title>
+
+    <!-- Meta -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <meta name="description" content="CraftShop">
+
+    <!-- FontAwesome JS-->
+    <script defer src="~/plugins/fontawesome/js/all.min.js"></script>
+
+    <!-- App CSS -->
+    <link id="theme-style" rel="stylesheet" href="~/css/portal.css">
+
+</head>
+
+<body class="app app-login p-0">
+    <div class="row g-0 app-auth-wrapper">
+        <div class="col-12 col-md-7 col-lg-6 auth-main-col text-center p-5">
+            <div class="d-flex flex-column align-content-end">
+                <div class="app-auth-body mx-auto">
+                    <div class="navbar-brand fw-bold fs-2 mb-4"><a class="app-logo" style="color:#0d6efd;"><i class="fa-solid fa-wand-magic-sparkles"></i>CraftShop</a></div>
+                    
+                    @RenderBody()
+
+                </div><!--//auth-body-->
+
+            </div>
+        </div>
+        <div class="col-12 col-md-5 col-lg-6 h-100 auth-background-col">
+            <div class="auth-background-holder"></div>
+            <div class="auth-background-mask"></div>
+        </div>
+
+    </div><!--//row-->
+
+
+</body>
+</html>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}

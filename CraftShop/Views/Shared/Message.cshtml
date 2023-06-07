@@ -1,0 +1,16 @@
+﻿@model string
+@{
+	Layout = "_AdminLayout";
+}
+
+<div class="app-card app-card-notification shadow-sm mb-4">
+
+	<div class="app-card-body p-4">
+		<div class="notification-content text-center">@Model</div>
+		<div class="row justify-content-center mt-3">
+			<div class="col-2">
+				<a class="btn" style="background-color:#51b37f;color:white;" asp-controller="Admin" asp-action="Index">Return to Main Menu</a>
+			</div>
+		</div>
+	</div><!--//app-card-body-->
+</div><!--//app-card-->

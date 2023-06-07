@@ -1,0 +1,60 @@
+﻿@using CraftShop.Models.db;
+@{
+    Layout = "_Layout";
+
+    string showType =  ViewBag.showType;
+
+    List<Product> products = ViewBag.Products; 
+
+    string title = "";
+
+    switch (showType)
+    {
+        case "all":
+            title = "All Products";
+            break;
+        default:
+            title = products.Select(x => x.SubCategory.Category.Name).FirstOrDefault();
+            break;
+    }
+
+}
+
+<section class="trending-product section" style="margin-top: 12px;">
+    <div class="container">
+        <div class="row">
+            <div class="col-12">
+                <div class="section-title">
+                    <h2>@title</h2>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            @foreach (Product prd in products)
+            {
+                <div class="col-lg-3 col-md-6 col-12">
+                    <!-- Start Single Product -->
+                    <div class="single-product">
+                        <div class="product-image">
+                            <img src="~/@prd.Photo" alt="#" width="337" height="335">
+                            <div class="button">
+                                <a href="@Url.Action("SingleProduct","Home",new {id=prd.ProductID})" class="btn"><i class="lni lni-cart"></i>See Details</a>
+                            </div>
+                        </div>
+                        <div class="product-info">
+                            <span class="category">@prd.SubCategory.Specification</span>
+                            <h4 class="title">
+                                <a href="product-grids.html">@prd.Name</a>
+                            </h4>
+                            <div class="price">
+                                <span>@prd.Price TL</span>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- End Single Product -->
+                </div>
+            }
+        </div>
+    </div>
+</section>
+

@@ -1,0 +1,109 @@
+﻿@using CraftShop.Models.db;
+@{
+	Layout = "_AdminLayout";
+
+	string createType = ViewBag.createType;
+
+	int i = 0;
+
+	List<Category> categories = ViewBag.Category;
+	List<Subcategory> subcategories = ViewBag.Subcategory;
+	List<Color> colors = ViewBag.Color;
+}
+<div class="col-12 col-md-10">
+	<div class="app-card app-card-settings shadow-sm p-4">
+		<div class="app-card-body">
+			@switch (createType)
+			{
+				case "addProduct":
+					<form class="settings-form" asp-controller="Admin" asp-action="CreateProduct" method="post">
+						<div class="mb-3">
+							<label for="setting-input-1" class="form-label">Name</label>
+							<input type="text" class="form-control" id="Name" name="Name">
+						</div>
+						<div class="mb-3">
+							<label for="setting-input-3" class="form-label">Specification</label>
+							@Html.DropDownList("SubCategoryID",new SelectList(subcategories,"SubCategoryID","Specification"),new { @class = "form-control mb-4"})
+						</div>
+						<div class="mb-3">
+							<label for="setting-input-3" class="form-label">Color</label>
+							@Html.DropDownList("ColorID",new SelectList(colors,"ColorID","Name"),new { @class = "form-control mb-4"})
+						</div>
+						<div class="mb-3">
+							<label for="setting-input-1" class="form-label">Description</label>
+							<input type="text" class="form-control" id="Description" name="Description">
+						</div>
+						<div class="mb-3">
+							<label for="setting-input-1" class="form-label">Price</label>
+							<input type="number" class="form-control" id="Price" name="Price" min="1">
+						</div>
+						<div class="mb-3">
+							<label for="setting-input-1" class="form-label">Photo Url</label>
+							<input type="text" class="form-control" id="Photo" name="Photo">
+						</div>
+						<div class="mb-3">
+							<label for="setting-input-1" class="form-label">Stock</label>
+							<input type="number" class="form-control" id="Stock" name="Stock" min="0">
+						</div>
+						<input hidden class="form-check-input" id="IsActive" name="IsActive" value="true">
+						<input hidden id="AdddDate" name="AddDate" value="@DateTime.Now">
+						<div class="row justify-content-center">
+							<button type="submit" class="btn app-btn-primary col-2 m-2" id="createProduct">Add</button>
+							<a type="button" class="btn app-btn-primary col-2 m-2" asp-controller="Admin" asp-action="Products">Cancel</a>
+						</div>
+					</form>
+					break;
+				case "addCategory":
+					<form class="settings-form" asp-controller="Admin" asp-action="CreateMainCategory" method="post">
+						<div class="mb-3">
+							<label for="setting-input-1" class="form-label">New Category</label>
+							<input type="text" class="form-control" id="Name" name="Name">
+						</div>
+						<div class="row justify-content-center">
+							<button type="submit" class="btn app-btn-primary col-2 m-2" id="createMainCategory">Add</button>
+							<a type="button" class="btn app-btn-primary col-2 m-2" asp-controller="Admin" asp-action="Categories" asp-route-categoryType="subMategory">Cancel</a>
+						</div>
+					</form>
+					break;
+				case "addSubcategory":
+					<form class="settings-form" asp-controller="Admin" asp-action="CreateSubCategory" method="post">
+						<div class="mb-3">
+							<label for="setting-input-2" class="form-label">Choose Category</label>
+							@Html.DropDownList("CategoryID",new SelectList(categories,"CategoryID","Name"),new { @class = "form-control mb-4"})
+						</div>
+						<div class="mb-3">
+							<label for="setting-input-1" class="form-label">New Subcategory</label>
+							<input type="text" class="form-control" id="Specification" name="Specification">
+						</div>
+						<div class="row justify-content-center">
+							<button type="submit" class="btn app-btn-primary col-2 m-2" id="createSubCategory">Add</button>
+							<a type="button" class="btn app-btn-primary col-2 m-2" asp-controller="Admin" asp-action="Categories" asp-route-categoryType="subCategory">Cancel</a>
+						</div>
+					</form>
+					break;
+				case "addColor":
+					<form class="settings-form" asp-controller="Admin" asp-action="CreateColor" method="post">
+						<div class="mb-3">
+							<label for="setting-input-1" class="form-label">New Color</label>
+							<input type="text" class="form-control" id="Name" name="Name">
+						</div>
+						<div class="row justify-content-center">
+							<button type="submit" class="btn app-btn-primary col-2 m-2" id="createColor">Add</button>
+							<a type="button" class="btn app-btn-primary col-2 m-2" asp-controller="Admin" asp-action="Parameters" asp-route-parameterType="color">Cancel</a>
+						</div>
+					</form>
+					break;
+			}
+		</div><!--//app-card-body-->
+	</div><!--//app-card-->
+</div>
+
+<script>
+	$(function () {
+		$('#CategoryID').append('<option value="0" selected>Please Select</option>');
+		$('#SubCategoryID').append('<option value="0" selected>Please Select</option>');
+		$('#ColorID').append('<option value="0" selected>Please Select</option>');
+	});
+</script>
+
+

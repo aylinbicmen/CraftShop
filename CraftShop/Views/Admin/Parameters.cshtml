@@ -1,0 +1,48 @@
+﻿@using CraftShop.Models.db;
+@{
+    Layout = "_AdminLayout";
+
+    string parameterType = ViewBag.parameterType;
+
+    List<Color> colors = ViewBag.Color;
+
+}
+
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js" integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN" crossorigin="anonymous"></script>
+
+@switch (parameterType)
+{
+    case "color":
+        <h1 class="mb-4">COLORS</h1>
+
+        <div class="row mb-3">
+            <div class="col-4">
+                @Html.ActionLink("Add Color","Create","Admin",new{createType="addColor"},new{@class="btn btn-outline-dark"})
+            </div>
+        </div>
+
+        <table class="table table-success table-hover" id="myTable">
+            <thead>
+                <tr>
+                    <th scope="col" class="text-center">#</th>
+                    <th scope="col" class="text-center">Colors</th>
+                    <th scope="col" class="text-center">Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                @for (int i = 0; i < colors.Count; i++)
+                {
+                    <tr>
+                        <th scope="row" class="text-center">@(i + 1)</th>
+                        <td class="text-center">@colors[i].Name</td>
+                        <td scope="col" class="text-center">
+                            @Html.ActionLink("Edit","Edit",new {id=colors[i].ColorID, editType="editColor"}) |
+                            @Html.ActionLink("Delete", "Delete", new {id=colors[i].ColorID, deleteType="deleteColor"})
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+        break;
+}

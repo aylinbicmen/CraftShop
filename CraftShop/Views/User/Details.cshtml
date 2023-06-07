@@ -1,0 +1,25 @@
+﻿@model CraftShop.Models.db.Address
+
+<div class="container p-5">
+    <div class="row">
+        <div class="col-md-6">
+            <div>
+                <div class="mb-3">
+                    <label for="Name" class="form-label">Name</label>
+                    <p class ="form-control mb-4" name="Name">@Model.Name</p>
+                </div>
+                <div class="mb-3">
+                    <label for="AddressType" class="form-label">Address Type</label>
+                    <p class="form-control mb-4" name="AddressTypeID">@Model.AddressType.Name</p>
+                </div>
+                <div class="mb-3">
+                    <label for="AddressLine" class="form-label">Address</label>
+                    <p class="form-control mb-4" name="AddressLine">@Model.AddressLine</p>
+                </div>
+                <div class="row justify-content-center">
+                    <a class="btn btn-primary col-2 m-2" asp-controller="User" asp-action="UserAddresses">Go Back</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

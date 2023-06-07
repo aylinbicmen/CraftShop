@@ -1,0 +1,132 @@
+﻿@using CraftShop.Models.db;
+@{
+	Layout = "_AdminLayout";
+
+	string editType = ViewBag.editType;
+
+	List<Category> categories = ViewBag.Category;
+	List<Subcategory> subcategories = ViewBag.Subcategory;
+	List<Color> colors = ViewBag.Color;
+
+	int active = 5;
+}
+
+<div class="col-12 col-md-10">
+	<div class="app-card app-card-settings shadow-sm p-4">
+		<div class="app-card-body">
+			@switch (editType)
+			{
+				case "editProduct":
+					Product product = ViewBag.Item;
+					active = Convert.ToInt32(product.IsActive);
+					<form class="settings-form" asp-controller="Admin" asp-action="EditProduct" method="post">
+						<div class="mb-3">
+							<label for="setting-input-1" class="form-label">Name</label>
+							<input type="text" class="form-control" id="Name" name="Name" value="@product.Name">
+						</div>
+						<div class="mb-3">
+							<label for="setting-input-3" class="form-label">Specification</label>
+							@Html.DropDownList("SubCategoryID",new SelectList(subcategories,"SubCategoryID","Specification",product.SubCategory.SubCategoryID),new { @class = "form-control mb-4"})
+						</div>
+						<div class="mb-3">
+							<label for="setting-input-3" class="form-label">Color</label>
+							@Html.DropDownList("ColorID",new SelectList(colors,"ColorID","Name",product.Color.ColorID),new { @class = "form-control mb-4"})
+						</div>
+						<div class="mb-3">
+							<label for="setting-input-1" class="form-label">Description</label>
+							<input type="text" class="form-control" id="Description" name="Description" value="@product.Description">
+						</div>
+						<div class="mb-3">
+							<label for="setting-input-1" class="form-label">Price</label>
+							<input type="number" class="form-control" id="Price" name="Price" min="1" value="@product.Price">
+						</div>
+						<div class="mb-3">
+							<label for="setting-input-1" class="form-label">Photo Url</label>
+							<input type="text" class="form-control" id="Photo" name="Photo" value="@product.Photo">
+						</div>
+						<div class="mb-3">
+							<label for="setting-input-1" class="form-label">Stock</label>
+							<input type="number" class="form-control" id="Stock" name="Stock" min="0" value="@product.Stock">
+						</div>
+						<div class="mb-3">
+							<label for="setting-input-1" class="form-label">Active</label>
+							<div>
+								<input type="radio" class="form-check-input" id="IsActive_t" name="IsActive" value="true">
+								<label for="IsActive_1" class="form-check-label">Yes</label>
+							</div>
+							<div>
+								<input type="radio" class="form-check-input" id="IsActive_f" name="IsActive" value="false">
+								<label for="IsActive_2" class="form-check-label">No</label>
+							</div>
+						</div>
+						<input hidden id="AddDate" name="AddDate" value="@product.AddDate">
+						<input hidden id="ProductID" name="ProductID" value="@product.ProductID">
+						<div class="row justify-content-center">
+							<button type="submit" class="btn app-btn-primary col-2 m-2" id="editProduct">Edit</button>
+							<a type="button" class="btn app-btn-primary col-2 m-2" asp-controller="Admin" asp-action="Products">Cancel</a>
+						</div>
+					</form>
+					break;
+				case "editCategory":
+					Category category = ViewBag.Item;
+					<form class="settings-form" asp-controller="Admin" asp-action="EditMainCategory" method="post">
+						<div class="mb-3">
+							<label for="setting-input-1" class="form-label">Edit Category</label>
+							<input type="text" class="form-control" id="Name" name="Name" value="@category.Name">
+						</div>
+						<input hidden id="CategoryID" name="CategoryID" value="@category.CategoryID">
+						<div class="row justify-content-center">
+							<button type="submit" class="btn app-btn-primary col-2 m-2" id="editMainCategory">Edit</button>
+							<a type="button" class="btn app-btn-primary col-2 m-2" asp-controller="Admin" asp-action="Categories" asp-route-categoryType="mainCategory">Cancel</a>
+						</div>
+					</form>
+					break;
+				case "editSubcategory":
+					Subcategory subcategory = ViewBag.Item;
+					<form class="settings-form" asp-controller="Admin" asp-action="EditSubCategory" method="post">
+						<div class="mb-3">
+							<label for="setting-input-2" class="form-label">Choose Category</label>
+							@Html.DropDownList("CategoryID",new SelectList(categories,"CategoryID","Name",subcategory.Category.CategoryID),new { @class = "form-control mb-4"})
+						</div>
+						<div class="mb-3">
+							<label for="setting-input-1" class="form-label">Edit Subcategory</label>
+							<input type="text" class="form-control" id="Specification" name="Specification" value="@subcategory.Specification">
+						</div>
+						<input hidden id="SubCategoryID" name="SubCategoryID" value="@subcategory.SubCategoryID">
+						<div class="row justify-content-center">
+							<button type="submit" class="btn app-btn-primary col-2 m-2" id="editSubCategory">Edit</button>
+							<a type="button" class="btn app-btn-primary col-2 m-2" asp-controller="Admin" asp-action="Categories" asp-route-categoryType="subCategory">Cancel</a>
+						</div>
+					</form>
+					break;
+				case "editColor":
+					Color color = ViewBag.Item;
+					<form class="settings-form" asp-controller="Admin" asp-action="EditColor" method="post">
+						<div class="mb-3">
+							<label for="setting-input-1" class="form-label">Edit Color</label>
+							<input type="text" class="form-control" id="Name" name="Name" value="@color.Name">
+						</div>
+						<input hidden id="ColorID" name="ColorID" value="@color.ColorID">
+						<div class="row justify-content-center">
+							<button type="submit" class="btn app-btn-primary col-2 m-2" id="editColor">Edit</button>
+							<a type="button" class="btn app-btn-primary col-2 m-2" asp-controller="Admin" asp-action="Parameters" asp-route-parameterType="color">Cancel</a>
+						</div>
+					</form>
+					break;
+			}
+		</div><!--//app-card-body-->
+	</div><!--//app-card-->
+</div>
+
+<script type="text/javascript">
+	$(function () {
+		if (@active === 1) {
+			$("#IsActive_t").prop("checked", true);
+		}
+		else{
+			$("#IsActive_f").prop("checked", true);
+		}
+	});
+	
+</script>
+

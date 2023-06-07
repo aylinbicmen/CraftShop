@@ -1,0 +1,76 @@
+﻿@using CraftShop.Models.db;
+@{
+	Layout = "_AdminLayout";
+
+	string deleteType = ViewBag.deleteType;
+}
+
+<div class="app-card app-card-notification shadow-sm mb-4">
+
+	<div class="app-card-body p-4">
+		<div class="notification-content text-center">Are you sure you would like to delete this item?</div>
+		<div class="app-card app-card-settings">
+			<div class="app-card-body">
+				@switch (deleteType)
+				{
+					case "deleteProduct":
+						Product product = ViewBag.Item;
+						<div class="mb-3">
+							<label for="setting-input-1" class="form-label">Name</label>
+							<p class="form-control" id="Name" name="Name">@product.Name</p>
+						</div>
+						<form class="settings-form" asp-controller="Admin" asp-action="DeleteProduct" method="post">
+							<input hidden type="text" class="form-control" id="ProductID" name="ProductID" value="@product.ProductID">
+							<div class="row justify-content-center">
+								<button type="submit" class="btn app-btn-primary col-2 m-2" id="deleteProduct">Delete</button>
+								<a type="button" class="btn app-btn-primary col-2 m-2" asp-controller="Admin" asp-action="Products">Cancel</a>
+							</div>
+						</form>
+						break;
+					case "deleteCategory":
+						Category category = ViewBag.Item;
+						<div class="mb-3">
+							<label for="setting-input-1" class="form-label">Name</label>
+							<p class="form-control" id="Name" name="Name">@category.Name</p>
+						</div>
+						<form class="settings-form" asp-controller="Admin" asp-action="DeleteCategory" method="post">
+							<input hidden type="text" class="form-control" id="CategoryID" name="CategoryID" value="@category.CategoryID">
+							<div class="row justify-content-center">
+								<button type="submit" class="btn app-btn-primary col-2 m-2" id="deleteCategory">Delete</button>
+								<a type="button" class="btn app-btn-primary col-2 m-2" asp-controller="Admin" asp-action="Categories" asp-route-categoryType="mainCategory">Cancel</a>
+							</div>
+						</form>
+						break;
+					case "deleteSubcategory":
+						Subcategory subcategory = ViewBag.Item;
+						<div class="mb-3">
+							<label for="setting-input-1" class="form-label">Name</label>
+							<p class="form-control" id="Name" name="Name">@subcategory.Specification</p>
+						</div>
+						<form class="settings-form" asp-controller="Admin" asp-action="DeleteSubcategory" method="post">
+							<input hidden type="text" class="form-control" id="SubCategoryID" name="SubCategoryID" value="@subcategory.SubCategoryID">
+							<div class="row justify-content-center">
+								<button type="submit" class="btn app-btn-primary col-2 m-2" id="deleteSubcategory">Delete</button>
+								<a type="button" class="btn app-btn-primary col-2 m-2" asp-controller="Admin" asp-action="Categories" asp-route-categoryType="subCategory">Cancel</a>
+							</div>
+						</form>
+						break;
+					case "deleteColor":
+						Color color = ViewBag.Item;
+						<div class="mb-3">
+							<label for="setting-input-1" class="form-label">Name</label>
+							<p class="form-control" id="Name" name="Name">@color.Name</p>
+						</div>
+						<form class="settings-form" asp-controller="Admin" asp-action="DeleteColor" method="post">
+							<input hidden type="text" class="form-control" id="ColorID" name="SubCategoryID" value="@color.ColorID">
+							<div class="row justify-content-center">
+								<button type="submit" class="btn app-btn-primary col-2 m-2" id="deleteColor">Delete</button>
+								<a type="button" class="btn app-btn-primary col-2 m-2" asp-controller="Admin" asp-action="Parameters" asp-route-parameterType="color">Cancel</a>
+							</div>
+						</form>
+						break;
+				}
+			</div>
+		</div>
+	</div><!--//app-card-body-->
+</div><!--//app-card-->

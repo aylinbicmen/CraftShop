@@ -1,0 +1,43 @@
+﻿@using CraftShop.Models.db;
+@{
+    Layout = "_Layout";
+
+    List<Address> addresses = ViewBag.Address;
+}
+
+
+<div class="container p-5">
+    <h1 class="mb-4">Addresses</h1>
+
+    <div class="row mb-3">
+        <div class="col-4">
+            <a type="button" class="btn btn-outline-primary" asp-action="Create" asp-controller="User">Add Address</a>
+        </div>
+    </div>
+
+    <table class="table table-primary table-hover" id="myTable">
+        <thead>
+            <tr>
+                <th scope="col" class="text-center">#</th>
+                <th scope="col" class="text-center">Name</th>
+                <th scope="col" class="text-center">Type</th>
+                <th scope="col" class="text-center">Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            @for (int i = 0; i < addresses.Count; i++)
+            {
+                <tr>
+                    <th scope="row" class="text-center">@(i + 1)</th>
+                    <td class="text-center">@addresses[i].Name</td>
+                    <td class="text-center">@addresses[i].AddressType.Name</td>
+                    <td scope="col" class="text-center">
+                        @Html.ActionLink("Edit","Edit",new {id=addresses[i].AddressID}) |
+                        @Html.ActionLink("Details", "Details", new {id=addresses[i].AddressID}) |
+                        @Html.ActionLink("Delete", "Delete", new {id=addresses[i].AddressID})
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>

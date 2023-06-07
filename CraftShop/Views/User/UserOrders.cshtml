@@ -1,0 +1,35 @@
+﻿@using CraftShop.Models.db;
+@{
+    Layout = "_Layout";
+
+    List<Order> orders = ViewBag.Orders;
+}
+
+
+<div class="container p-5">
+    <h1 class="mb-4">Orders</h1>
+
+    <table class="table table-primary table-hover" id="myTable">
+        <thead>
+            <tr>
+                <th scope="col" class="text-center">#</th>
+                <th scope="col" class="text-center">First Name</th>
+                <th scope="col" class="text-center">Last Name</th>
+                <th scope="col" class="text-center">Total</th>
+                <th scope="col" class="text-center">Address</th>
+            </tr>
+        </thead>
+        <tbody>
+            @for (int i = 0; i < orders.Count; i++)
+            {
+                <tr>
+                    <th scope="row" class="text-center">@(i + 1)</th>
+                    <td class="text-center">@orders[i].FirstName</td>
+                    <td class="text-center">@orders[i].LastName</td>
+                    <td class="text-center">@orders[i].Total</td>
+                    <td class="text-center">@orders[i].Address.Name</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>

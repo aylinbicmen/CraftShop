@@ -1,0 +1,16 @@
+﻿@{
+    Layout = "_Layout";
+}
+
+<div class="container p-5">
+    <header>
+        <h2 class="text-center mb-4" style="color:#0d6efd;">Who We Are</h2>
+        <p class="text-center">CraftShop sells a comprehensive range of stationery and office supplies, ranging from writing equipment, paper and filing solutions to printers, ink, office furniture and tech products, including shredders and laminators, headphones, computer accessories and more. CraftShop's expanded storage range has proven popular with customers, as they look to declutter and organise their homes.</p>
+        <p class="text-center">With over 200 stores and our online shop, our business accounts and special discounts for students, our unrivalled product knowledge, range and service.</p>
+        <div class="row justify-content-center mt-4">
+            <div class="col-2">
+                @Html.ActionLink("See Our Products","Products","Home",new{showType="all"},new{@class="btn btn-primary"})
+            </div>
+        </div>
+    </header>
+</div>

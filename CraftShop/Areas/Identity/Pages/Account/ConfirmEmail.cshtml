@@ -1,0 +1,14 @@
+﻿@page
+@model ConfirmEmailModel
+@{
+    ViewData["Title"] = "Confirm email";
+
+    Layout = "_IdentityLayout";
+}
+
+<h1>@ViewData["Title"]</h1>
+
+<partial name="_StatusMessage" model="Model.StatusMessage" />
+
+<button id="login-submit" type="submit" class="btn app-btn-primary w-100 theme-btn mx-auto mt-4" style="background-color:#0d6efd;"><a asp-area="Identity" asp-page="/Account/Login" class="text-link" style="color:white;">Log in</a></button>
+

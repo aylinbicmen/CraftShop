@@ -1,0 +1,19 @@
+﻿@model int
+@{
+    Layout = "_Layout";
+}
+
+
+<div class="container p-5">
+    <div class="card mb-3">
+        <div class="card-body text-center">
+            <h5 class="card-title fw-bold" style="color:black">Checkout Complete</h5>
+            <p style="color:black">Thanks for your order! Your order number is: @Model</p>
+        </div>
+    </div>
+    <div class="row justify-content-center">
+        <div class="col-2">
+            <a class="btn btn-primary" asp-controller="Home" asp-action="Index">Return Home</a>
+        </div>
+    </div>
+</div>

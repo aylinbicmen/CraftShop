@@ -1,0 +1,60 @@
+﻿@using CraftShop.Models.db;
+@{
+    Layout = "_AdminLayout";
+
+    Product product = ViewBag.Item;
+}
+
+<div class="col-12 col-md-10">
+	<div class="app-card app-card-settings shadow-sm p-4">
+		<div class="app-card-body">
+			<div class="mb-3">
+				<label for="setting-input-1" class="form-label">Name</label>
+				<p class="form-control" id="Name" name="Name">@product.Name</p>
+			</div>
+			<div class="mb-3">
+				<label for="setting-input-2" class="form-label">Category</label>
+				<p class="form-control" id="Category" name="Category">@product.SubCategory.Category.Name</p>
+			</div>
+			<div class="mb-3">
+				<label for="setting-input-3" class="form-label">SubCategory</label>
+				<p class="form-control" id="SubCategory" name="SubCategory">@product.SubCategory.Specification</p>
+			</div>
+			<div class="mb-3">
+				<label for="setting-input-3" class="form-label">Color</label>
+				<p class="form-control" id="Color" name="Color">@product.Color.Name</p>
+			</div>
+			<div class="mb-3">
+				<label for="setting-input-1" class="form-label">Description</label>
+				<textarea class="form-control" id="Description" name="Description" style="height: 100px;">@product.Description</textarea>
+			</div>
+			<div class="mb-3">
+				<label for="setting-input-1" class="form-label">Price</label>
+				<p class="form-control" id="Price" name="Price">@product.Price</p>
+			</div>
+			<div class="mb-3">
+				<label for="setting-input-1" class="form-label">Stock</label>
+				<p class="form-control" id="Stock" name="Stock">@product.Stock</p>
+			</div>
+			<div class="mb-3">
+				<label for="setting-input-1" class="form-label">Active</label>
+				@if (product.IsActive == true)
+				{
+					<p class="form-control" id="IsActive" name="IsActive">Yes</p>
+				}
+				else
+				{
+					<p class="form-control" id="IsActive" name="IsActive">No</p>
+				}
+			</div>
+			<div class="mb-3">
+				<label for="setting-input-1" class="form-label">Date Added</label>
+				<p class="form-control" id="AddDate" name="AddDate">@product.AddDate</p>
+			</div>
+			<div class="row justify-content-center">
+				<a type="button" class="btn app-btn-primary col-2 m-2" asp-controller="Admin" asp-action="Products">Go Back</a>
+			</div>
+		</div><!--//app-card-body-->
+
+	</div><!--//app-card-->
+</div>
